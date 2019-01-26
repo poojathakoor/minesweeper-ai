@@ -48,7 +48,7 @@ public class MinesweeperAI extends AI {
 	Set<Location> helperTiles;
 	boolean verbose = false;
 
-	public MyAI(int rowDimension, int colDimension, int totalMines, int startX, int startY) {
+	public MinesweeperAI(int rowDimension, int colDimension, int totalMines, int startX, int startY) {
 		// ################### Implement Constructor (required)
 		// ####################
 		this.rowDimension = colDimension;
