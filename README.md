@@ -5,7 +5,7 @@ We used probabilistic and backtracking approach to find the location of safe til
 
 Stood amongst top 5 teams out of 45 total teams in class to solve the Minesweeper game efficiently and accurately
 
-Results:
+Results (Class tournament):
 * Won 870/1000 Beginner Worlds (8 * 8 grid with 10 mines)
 * Won 864/1000 Intermediate Worlds (16 * 16 grid with 40 mines)
 * Won 428/1000 Expert Worlds (16 * 30 grid with 99 mines)
