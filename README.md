@@ -10,8 +10,6 @@ Results (Class tournament):
 * Won 864/1000 Intermediate Worlds (16 * 16 grid with 40 mines)
 * Won 428/1000 Expert Worlds (16 * 30 grid with 99 mines)
 
-[Cannot post the entire source code :( ]
-
 ## Demo
 
 ![](demo.gif)
