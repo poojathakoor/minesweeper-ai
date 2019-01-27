@@ -1,5 +1,21 @@
 
-package src;
+/*
+
+AUTHOR:      John Lu
+
+DESCRIPTION: This file contains your agent class, which you will
+             implement.
+
+NOTES:       - If you are having trouble understanding how the shell
+               works, look at the other parts of the code, as well as
+               the documentation.
+
+             - You are only allowed to make changes to this portion of
+               the code. Any changes to other portions of the code will
+               be lost when the tournament runs your code.
+*/
+
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,9 +28,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
 
-import src.Action.ACTION;
 
-public class MinesweeperAI extends AI {
+public class MinesweeperAI {
 	// ########################## INSTRUCTIONS ##########################
 	// 1) The Minesweeper Shell will pass in the board size, number of mines
 	// and first move coordinates to your agent. Create any instance variables
@@ -103,7 +118,7 @@ public class MinesweeperAI extends AI {
 	// #####################
 
 	public Action getAction(int number) {
-
+		
 		if (verbose) {
 			System.out.println(
 					"Easy targets (" + this.easyTargets.size() + "): " + getIterableAsString(this.easyTargets));
@@ -115,6 +130,9 @@ public class MinesweeperAI extends AI {
 					"Killer targets (" + this.killerTargets.size() + "): " + getIterableAsString(this.killerTargets));
 			System.out.println("Helper tiles : " + getIterableAsString(this.helperTiles));
 		}
+		
+		if(this.coveredTargets.size() == 0)
+			return new Action(Intent.LEAVE);
 
 		// if uncovered tile is non bomb and non flag
 		if (number >= 0) {
@@ -159,7 +177,7 @@ public class MinesweeperAI extends AI {
 		if (!this.easyTargets.isEmpty()) {
 			Location easyTarget = this.easyTargets.pop();
 			uncoverTile(easyTarget.x, easyTarget.y);
-			return new Action(ACTION.UNCOVER, this.currentX, this.currentY);
+			return new Action(Intent.UNCOVER, this.currentX, this.currentY);
 		}
 
 		// uncover all the identified mines
@@ -167,7 +185,7 @@ public class MinesweeperAI extends AI {
 			Location killerTarget = killerTargets.iterator().next();
 			flagTheTile(killerTarget.x, killerTarget.y);
 			killerTargets.remove(killerTarget);
-			return new Action(ACTION.FLAG, this.currentX, this.currentY);
+			return new Action(Intent.FLAG, this.currentX, this.currentY);
 		}
 
 		findTargetToFlag();
@@ -175,14 +193,14 @@ public class MinesweeperAI extends AI {
 		if (!this.easyTargets.isEmpty()) {
 			Location easyTarget = this.easyTargets.pop();
 			uncoverTile(easyTarget.x, easyTarget.y);
-			return new Action(ACTION.UNCOVER, this.currentX, this.currentY);
+			return new Action(Intent.UNCOVER, this.currentX, this.currentY);
 		}
 
 		if (!this.killerTargets.isEmpty()) {
 			Location killerTarget = killerTargets.iterator().next();
 			flagTheTile(killerTarget.x, killerTarget.y);
 			killerTargets.remove(killerTarget);
-			return new Action(ACTION.FLAG, this.currentX, this.currentY);
+			return new Action(Intent.FLAG, this.currentX, this.currentY);
 		}
 
 		// if true then uncover
@@ -192,11 +210,11 @@ public class MinesweeperAI extends AI {
 
 		if (uncoverTheTile[0]) {
 			uncoverTile(randomTile.x, randomTile.y);
-			return new Action(ACTION.UNCOVER, this.currentX, this.currentY);
+			return new Action(Intent.UNCOVER, this.currentX, this.currentY);
 		}
 
 		flagTheTile(randomTile.x, randomTile.y);
-		return new Action(ACTION.FLAG, this.currentX, this.currentY);
+		return new Action(Intent.FLAG, this.currentX, this.currentY);
 
 	}
 
@@ -736,16 +754,16 @@ public class MinesweeperAI extends AI {
 		boolean[][] killerTiles;
 		boolean[][] safeTiles;
 
-		if (this.difficulty == Difficulty.EASY || (this.coveredTargets.size() - this.suspectTargets.size()) > 8 || this.suspectTargets.size() > 15)
+		if (this.suspectTargets.size() > 8 || this.difficulty == Difficulty.EASY)
 			segregate = true;
 
 		List<ArrayList<Location>> segments = new ArrayList<ArrayList<Location>>();
 
 		if (segregate)
-			segments = splitSuspectTiles(this.suspectTargets);
-		else 
-			segments.add(new ArrayList<Location>(this.coveredTargets));
-		
+			segments = splitSuspectTiles(suspectTargets);
+		else {
+			segments.add(new ArrayList<Location>(suspectTargets));
+		}
 
 		double bestProbability = 0;
 		int totalMultiCases = 1, bestTileIndex = -1, bestSegmentIndex = -1;
