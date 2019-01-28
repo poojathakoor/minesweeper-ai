@@ -10,6 +10,8 @@ Results (Class tournament):
 * Won 864/1000 Intermediate Worlds (16 * 16 grid with 40 mines)
 * Won 428/1000 Expert Worlds (16 * 30 grid with 99 mines)
 
+Main AI implementation is present in the file [Minesweeper.AI](https://github.com/poojathakoor/minesweeper-ai/blob/master/MinesweeperAI.java)
+
 ## Demo
 
 ![](demo.gif)
