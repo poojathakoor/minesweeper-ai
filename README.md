@@ -12,6 +12,24 @@ Results (Class tournament):
 
 Main AI implementation is present in the file [Minesweeper.AI](https://github.com/poojathakoor/minesweeper-ai/blob/master/MinesweeperAI.java)
 
+## Getting Started
+
+
+### Prerequisites
+
+* Java (latest version)
+
+### Installing
+
+    git clone https://github.com/pooja-thakoor/minesweeper-ai.git
+    cd minesweeper-ai
+    javac *.java
+    java Main
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details
+
 ## Demo
 
 ![](demo.gif)
