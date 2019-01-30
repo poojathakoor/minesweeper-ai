@@ -26,13 +26,13 @@ Main AI implementation is present in the file [Minesweeper.AI](https://github.co
     javac *.java
     java Main
 
-## License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details
-
 ## Demo
 
 ![](demo.gif)
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details
 
 ## Authors
 
