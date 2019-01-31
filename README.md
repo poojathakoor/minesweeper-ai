@@ -21,7 +21,7 @@ Main AI implementation is present in the file [Minesweeper.AI](https://github.co
 
 ### Installing
 
-    git clone https://github.com/pooja-thakoor/minesweeper-ai.git
+    git clone https://github.com/poojathakoor/minesweeper-ai.git
     cd minesweeper-ai
     javac *.java
     java Main
